@@ -5,6 +5,7 @@ class GrammarStats
     end
   
     def check(text) 
+        fail "Enter a sentence." if text.empty?
         if text =~ /^[A-Z].*(\.|\?|\!)$/
             @passed += 1
         else 
@@ -14,7 +15,8 @@ class GrammarStats
   
     def percentage_good
         total = @passed + @failed
-        return (@passed / total.to_f) * 100
+        percent = (@passed / total.to_f) * 100
+        return percent.to_i
     end
 end
 
