@@ -1,14 +1,19 @@
 class PhoneBook
     def initialize
-        # ...
+        @numbers = []
     end
 
-    def extract_numbers(text) # text is a string representing a journal entry
-        # returns nothing
+    def extract_numbers(text) 
+        if text =~ /\d{11}/
+            text.scan(/\d{11}/).each do |number|
+            @numbers << number
+            end
+        end
+        @numbers.uniq!
     end
 
     def list 
-        # returns a list of strings representing phone numbers
+        return @numbers
     end 
 end
 
