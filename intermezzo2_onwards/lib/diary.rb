@@ -1,18 +1,27 @@
 class Diary
-    def initialize(title, artist)
+    def initialize
+        @entries = []
     end
 
-    def title
+    def add(entry)
+        @entries << entry
     end
 
-    def contents
+    def all
+        return @entries 
     end
 
     def count_words
+        return @entries.sum(&:count_words)
     end
 
     def reading_time(wpm)
+        fail "WPM must be positive" unless wpm.positive?
+        return @entries.sum do |entry|
+            entry.reading_time(wpm)
+        end
     end
 
-    def reading_chunk
+    def find_best_entry_for_reading_time(wpm, minutes)
+    end
 end
