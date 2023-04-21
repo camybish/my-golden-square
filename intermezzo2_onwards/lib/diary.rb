@@ -16,12 +16,16 @@ class Diary
     end
 
     def reading_time(wpm)
-        fail "WPM must be positive" unless wpm.positive?
+        fail "WPM must be positive" unless wpm > 0 
         return @entries.sum do |entry|
             entry.reading_time(wpm)
         end
     end
 
     def find_best_entry_for_reading_time(wpm, minutes)
+        readable_entries = @entries.filter do |entry|
+            entry.reading_time(wpm) <= minutes
+        end
+        return readable_entries.first
     end
 end

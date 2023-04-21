@@ -13,14 +13,12 @@ class DiaryEntry
     end
 
     def count_words
+        return 0 if @contents.empty?
         return @contents.split(" ").length
     end
 
     def reading_time(wpm)
-        fail "WPM must be positive" unless wpm.positive?
-        return @entries.sum do |entry|
-            entry.reading_time(wpm)
-        end
+        return (count_words / wpm.to_f).ceil
     end
 
     def reading_chunk(wpm, minutes)
